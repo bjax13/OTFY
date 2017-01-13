@@ -1,5 +1,5 @@
 {
-  "name": "selfstudy",
+  "name": "Optify",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,11 +18,14 @@
   "homepage": "https://github.com/bjax13/selfstudyfront2back#readme",
   "dependencies": {
     "babel-preset-es2015": "^6.18.0",
+    "body-parser": "^1.15.2",
     "browser-sync": "^2.18.6",
     "cachebust": "^2.2.0",
     "del": "^2.2.2",
+    "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-cachebust": "0.0.6",
     "gulp-concat": "^2.6.1",
     "gulp-livereload": "^3.8.1",
     "gulp-print": "^2.0.1",
@@ -31,5 +34,6 @@
     "gulp-uglify": "^2.0.0",
     "http": "0.0.0",
     "reload": "^1.1.0"
-  }
+  },
+  "keywords": []
 }
