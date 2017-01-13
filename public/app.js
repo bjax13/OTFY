@@ -3,18 +3,35 @@ angular.module('app',['ui.router'])
 
    $urlRouterProvider.otherwise('/');
 
+
    $stateProvider
-      .state('home', {
+      .state('landingPage', {
         url: '/',
-        templateUrl: './views/home.html'
+        templateUrl: './views/landingPage.html'
       })
-      .state('about', {
-        url: '/about',
-        templateUrl: './views/about.html'
+      .state('main', {
+        url: '/main',
+        templateUrl: './views/main.html'
       })
-      .state('other', {
-        url: '/other',
-        templateUrl: './views/other.html'
+      .state('login', {
+        url: '/login',
+        templateUrl: './views/login.html'
+      })
+      .state('orderCL', {
+        url: '/orderCL',
+        templateUrl: './views/orderCL.html'
+      })
+      .state('scheduleEyeExamComingSoon', {
+        url: '/scheduleEyeExamComingSoon',
+        templateUrl: './views/scheduleEyeExamComingSoon.html'
+      })
+      .state('orderEWComingSoon', {
+        url: '/orderEWComingSoon',
+        templateUrl: './views/orderEWComingSoon.html'
+      })
+      .state('userInfo', {
+        url: '/userInfo',
+        templateUrl: './views/userInfo.html'
       });
 
  });
