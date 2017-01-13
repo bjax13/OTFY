@@ -26,7 +26,7 @@ angular.module('app').controller('mainCtrl', function ($scope) {
 angular.module('app').directive('navBar', function () {
   return {
     restrict: 'E',
-    templateUrl: "../views/navTpl.html"
+    templateUrl: "./js/directives/templates/navTpl.html"
   };
 });
 //# sourceMappingURL=bundle.js.map
