@@ -1,0 +1,11 @@
+.main-wrap{
+  /*background: linear-gradient(to bottom,#45c7fa 0,#1976d2 100%);*/
+  background: teal;
+  padding-top: 65px;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
