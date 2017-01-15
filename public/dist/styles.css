@@ -46,8 +46,19 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-.nav-list {
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+.nav-bar {
+  height: 65px;
+  background: #1976D2;
   display: flex;
-  justify-content: space-around; }
+  align-items: center; }
+
+.nav-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff; }
 
 /*# sourceMappingURL=maps/styles.css.map */
