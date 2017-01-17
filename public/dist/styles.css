@@ -84,6 +84,17 @@ h6 {
   width: 100vw;
   min-height: 100vh; }
 
+.sections {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.shopping-section {
+  height: 50vh;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column; }
+
 .nav-bar {
   height: 65px;
   background: #1976D2;

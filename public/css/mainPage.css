@@ -1,0 +1,11 @@
+.sections {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shopping-section{
+  height: 50vh;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
