@@ -78,7 +78,7 @@ h5 {
 h6 {
   font-size: 1.2rem; }
 
-.landing-wrap, .main-wrap {
+.landing-wrap, .main-wrap, .orderCL-wrap {
   background: linear-gradient(to bottom, #45c7fa 0, #1976d2 100%);
   padding-top: 65px;
   width: 100vw;
@@ -94,6 +94,24 @@ h6 {
   display: flex;
   justify-content: space-around;
   flex-direction: column; }
+
+.get-started {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column; }
+
+.orderTitle {
+  display: block;
+  color: green; }
+
+.step {
+  width: 150px;
+  height: 150px; }
+
+.one, .two, .three {
+  width: 100%; }
 
 .nav-bar {
   height: 65px;

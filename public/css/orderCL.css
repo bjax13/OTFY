@@ -1,0 +1,21 @@
+
+.get-started{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.orderTitle{
+  display: block;
+  color: green;
+}
+
+
+.step {
+  width: 150px;
+  height: 150px;
+}
+.one, .two, .three{
+  width: 100%;
+}
