@@ -16,6 +16,18 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
   }).state('orderCL', {
     url: '/orderCL',
     templateUrl: './views/orderCL.html'
+  }).state('orderCL.address', {
+    url: '/address',
+    templateUrl: './views/orderClSub/address.html'
+  }).state('orderCL.selectBrand', {
+    url: '/selectBrand',
+    templateUrl: './views/orderClSub/selectBrand.html'
+  }).state('orderCL.selectECP', {
+    url: '/selectECP',
+    templateUrl: './views/orderClSub/selectECP.html'
+  }).state('orderCL.checkout', {
+    url: '/checkout',
+    templateUrl: './views/orderClSub/checkout.html'
   }).state('scheduleEyeExamComingSoon', {
     url: '/scheduleEyeExamComingSoon',
     templateUrl: './views/scheduleEyeExamComingSoon.html'
