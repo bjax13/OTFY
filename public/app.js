@@ -37,7 +37,6 @@ angular.module('app',['ui.router'])
         url: '/checkout',
         templateUrl: './views/orderClSub/checkout.html'
       })
-
       .state('scheduleEyeExamComingSoon', {
         url: '/scheduleEyeExamComingSoon',
         templateUrl: './views/scheduleEyeExamComingSoon.html'

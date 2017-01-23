@@ -47,10 +47,19 @@ angular.module('app').controller('mainCtrl', function ($scope) {
 });
 'use strict';
 
+angular.module('app').controller('navBarCtrl', function ($scope) {
+  $scope.test = 'again';
+});
+'use strict';
+
 angular.module('app').directive('navBar', function () {
   return {
     restrict: 'E',
-    templateUrl: "./js/directives/templates/navTpl.html"
+    templateUrl: "./js/directives/templates/navTpl.html",
+    scope: {
+      test: '='
+    },
+    controller: 'navBarCtrl'
   };
 });
 //# sourceMappingURL=bundle.js.map
