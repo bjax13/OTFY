@@ -4,7 +4,6 @@ angular.module('app')
       restrict: 'E',
       templateUrl: "./js/directives/templates/navTpl.html",
       scope: {
-        test: '='
       },
       controller: 'navBarCtrl'
     };

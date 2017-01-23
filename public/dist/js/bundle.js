@@ -48,7 +48,7 @@ angular.module('app').controller('mainCtrl', function ($scope) {
 'use strict';
 
 angular.module('app').controller('navBarCtrl', function ($scope) {
-  $scope.test = 'again';
+  $scope.test = true;
 });
 'use strict';
 
@@ -56,9 +56,7 @@ angular.module('app').directive('navBar', function () {
   return {
     restrict: 'E',
     templateUrl: "./js/directives/templates/navTpl.html",
-    scope: {
-      test: '='
-    },
+    scope: {},
     controller: 'navBarCtrl'
   };
 });
