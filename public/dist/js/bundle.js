@@ -43,12 +43,19 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
 });
 'use strict';
 
-angular.module('app').controller('addressInputCtrl', function ($scope, addressAutoFillSrvc) {
+angular.module('app').controller('addressInputCtrl', function ($scope, addressAutoFillSrvc, saveAddressSrvc) {
   $scope.test = addressAutoFillSrvc.test;
 
   $scope.address = {
-    addressSearch: ''
+    addressSearch: null,
+    streetNumber: null,
+    route: null,
+    locality: null,
+    postalCode: null,
+    administrativeAreaLevel1: null
   };
+
+  $scope.logAddress = saveAddressSrvc.logAddress;
 
   $scope.initialize = addressAutoFillSrvc.initialize;
 
@@ -148,5 +155,23 @@ angular.module('app').service('addressAutoFillSrvc', function () {
   };
   // [END region_geolocation]
 
+});
+'use strict';
+
+angular.module('app').service('saveAddressSrvc', function () {
+
+  this.logAddress = function () {
+    var addressObj = {
+      addressSearch: document.getElementById('autocomplete').value,
+      streetNumber: document.getElementById('street_number').value,
+      streetName: document.getElementById('route').value,
+      city: document.getElementById('locality').value,
+      country: document.getElementById('country').value,
+      postalCode: document.getElementById('postal_code').value,
+      state: document.getElementById('administrative_area_level_1').value
+    };
+
+    console.log(addressObj);
+  };
 });
 //# sourceMappingURL=bundle.js.map
