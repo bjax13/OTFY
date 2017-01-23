@@ -15,7 +15,8 @@ angular.module('app',['ui.router'])
       })
       .state('login', {
         url: '/login',
-        templateUrl: './views/login.html'
+        templateUrl: './views/login.html',
+        controller: 'navBarCtrl'
       })
       .state('orderCL', {
         url: '/orderCL',
@@ -23,7 +24,8 @@ angular.module('app',['ui.router'])
       })
       .state('orderCL.address', {
         url: '/address',
-        templateUrl: './views/orderClSub/address.html'
+        templateUrl: './views/orderClSub/address.html',
+        controller: 'addressInputCtrl'
       })
       .state('orderCL.selectBrand', {
         url: '/selectBrand',

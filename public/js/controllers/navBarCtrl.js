@@ -1,5 +1,12 @@
 angular.module('app')
   .controller('navBarCtrl', function ($scope) {
-    $scope.test = false;
+    $scope.loggedIn = false;
+
+    $scope.changeLoggin = function () {
+
+
+      $scope.loggedIn = !$scope.loggedIn;
+      console.log($scope.loggedIn);
+    };
 
   });
