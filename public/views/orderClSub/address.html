@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <div class="test">
+
   <h3>this is the input address {{test}}</h3>
+
   <div class="address-box">
     <div ng-init="initialize()">
-  <form class="form-address" id="address">
+      <form class="form-address" id="address">
 
-    <!-- Search Field -->
-    <div class="flex-container c-1column" id="locationField">
-      <label>Search for your address</label>
-      <input class="flex-item" id="autocomplete" placeholder="address, zip or city" ng-focus="geolocate()" type="text">
+        <!-- Search Field -->
+        <div class="flex-container c-1column" id="locationField">
+          <label>Search for your address</label>
+          <input class="flex-item" id="autocomplete" placeholder="address, zip or city" ng-focus="geolocate()" type="text">
+        </div>
+
+        <!-- Street Address -->
+        <div class="flex-container">
+          <label>Street address</label>
+          <div class="flex-item c-2column"><input id="street_number" ></div>
+          <div class="flex-item c-2column"><input id="route" ></div>
+        </div>
+
+        <!-- City -->
+        <div class="flex-container">
+          <label>City</label>
+          <input class="flex-item c-1column" id="locality" >
+        </div>
+
+        <!-- State & Zip -->
+        <div class="flex-container">
+          <div class="flex-item c-2column">
+            <label>State</label>
+            <input id="administrative_area_level_1" >
+          </div>
+          <div class="flex-item c-2column">
+            <label>Zip code</label>
+            <input id="postal_code" >
+          </div>
+        </div>
+
+        <!-- Country -->
+        <div class="flex-container">
+          <label>Country</label>
+          <input class="flex-item c-1column" id="country" >
+        </div>
+
+      </form>
     </div>
-
-    <!-- Street Address -->
-    <div class="flex-container">
-      <label>Street address</label>
-      <div class="flex-item c-2column"><input id="street_number" ></div>
-      <div class="flex-item c-2column"><input id="route" ></div>
-    </div>
-
-    <!-- City -->
-    <div class="flex-container">
-      <label>City</label>
-      <input class="flex-item c-1column" id="locality" >
-    </div>
-
-    <!-- State & Zip -->
-    <div class="flex-container">
-      <div class="flex-item c-2column">
-        <label>State</label>
-        <input id="administrative_area_level_1" >            
-      </div>
-      <div class="flex-item c-2column">
-        <label>Zip code</label>
-        <input id="postal_code" >
-      </div>
-    </div>
-
-    <!-- Country -->
-    <div class="flex-container">
-      <label>Country</label>
-      <input class="flex-item c-1column" id="country" >
-    </div>
-
-  </form>
-</div>
   </div>
 
 
