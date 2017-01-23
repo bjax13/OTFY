@@ -108,12 +108,12 @@ function geolocate() {
 // [END region_geolocation]
 'use strict';
 
-angular.module('app').controller('addressInputCtrl', function ($scope, addressSrvc) {
-  $scope.test = addressSrvc.test;
+angular.module('app').controller('addressInputCtrl', function ($scope, addressAutoFillSrvc) {
+  $scope.test = addressAutoFillSrvc.test;
 
-  $scope.initialize = addressSrvc.initialize;
+  $scope.initialize = addressAutoFillSrvc.initialize;
 
-  $scope.geolocate = addressSrvc.geolocate;
+  $scope.geolocate = addressAutoFillSrvc.geolocate;
 });
 'use strict';
 
@@ -144,7 +144,8 @@ angular.module('app').directive('navBar', function () {
 });
 'use strict';
 
-angular.module('app').service('addressSrvc', function () {
+angular.module('app').service('addressAutoFillSrvc', function () {
+
   this.test = 'svc bacon';
 
   var placeSearch = void 0,

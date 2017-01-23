@@ -1,13 +1,10 @@
 angular.module('app')
-  .controller('addressInputCtrl', function ($scope,addressSrvc) {
-    $scope.test = addressSrvc.test;
+  .controller('addressInputCtrl', function ($scope,addressAutoFillSrvc) {
+    $scope.test = addressAutoFillSrvc.test;
 
 
-    $scope.initialize = addressSrvc.initialize;
+    $scope.initialize = addressAutoFillSrvc.initialize;
 
-
-    $scope.geolocate = addressSrvc.geolocate;
-
-
+    $scope.geolocate = addressAutoFillSrvc.geolocate;
 
   });
