@@ -34,7 +34,8 @@ angular.module('app',['ui.router'])
       })
       .state('orderCL.selectECP', {
         url: '/selectECP',
-        templateUrl: './views/orderClSub/selectECP.html'
+        templateUrl: './views/orderClSub/selectECP.html',
+        controller: 'ecpInputCtrl'
       })
       .state('orderCL.checkout', {
         url: '/checkout',

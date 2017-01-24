@@ -27,7 +27,8 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
     controller: 'rxInputCtrl'
   }).state('orderCL.selectECP', {
     url: '/selectECP',
-    templateUrl: './views/orderClSub/selectECP.html'
+    templateUrl: './views/orderClSub/selectECP.html',
+    controller: 'ecpInputCtrl'
   }).state('orderCL.checkout', {
     url: '/checkout',
     templateUrl: './views/orderClSub/checkout.html'
@@ -48,6 +49,17 @@ angular.module('app').controller('addressInputCtrl', function ($scope, addressAu
   $scope.test = addressAutoFillSrvc.test;
 
   $scope.logAddress = saveAddressSrvc.logAddress;
+
+  $scope.initialize = addressAutoFillSrvc.initialize;
+
+  $scope.geolocate = addressAutoFillSrvc.geolocate;
+});
+'use strict';
+
+angular.module('app').controller('ecpInputCtrl', function ($scope, addressAutoFillSrvc, ecpSaveSrvc) {
+  $scope.test = addressAutoFillSrvc.test;
+
+  $scope.logAddress = ecpSaveSrvc.logAddress;
 
   $scope.initialize = addressAutoFillSrvc.initialize;
 
@@ -154,6 +166,33 @@ angular.module('app').service('addressAutoFillSrvc', function () {
   };
   // [END region_geolocation]
 
+});
+'use strict';
+
+angular.module('app').service('ecpSaveSrvc', function () {
+
+  this.test = 'test success';
+
+  var addresses = [];
+
+  this.logAddress = function () {
+    var addressObj = {
+      ECPSearch: document.getElementById('autocomplete').value,
+      streetNumber: document.getElementById('street_number').value,
+      streetName: document.getElementById('route').value,
+      city: document.getElementById('locality').value,
+      country: document.getElementById('country').value,
+      postalCode: document.getElementById('postal_code').value,
+      state: document.getElementById('administrative_area_level_1').value
+    };
+
+    if (addressObj.state && addressObj.streetNumber && addressObj.streetName && addressObj.city && addressObj.country && addressObj.postalCode) {
+      addresses.push(addressObj);
+      console.log(addresses);
+    } else {
+      alert('missing address field');
+    }
+  };
 });
 'use strict';
 

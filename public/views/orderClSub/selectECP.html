@@ -1,5 +1,59 @@
 <!DOCTYPE html>
-<div class="test">
-  <h3>this is the select ecp</h3>
+<div class="test displayFlexCC">
+
+  <h3>this is the select ecp {{test}} {{1+1}}</h3>
+  <br>
+  <img src="http://med.stanford.edu/school/contacts/_jcr_content/main/panel_builder/panel_1/panel_builder_1/panel_0/image.img.620.high.png" alt="Map of Eye Docs">
+  <br>
+  <h3></h3>
+
+  <div class="address-box">
+    <div ng-init="initialize()">
+      <ng-form class="form-address" id="address" name="addressForm">
+
+        <!-- Search Field -->
+        <div class="flex-container c-1column" id="locationField">
+          <label>Search for your Eye Doctor by Address</label>
+          <input class="flex-item" id="autocomplete" placeholder="address, zip or city" ng-focus="geolocate()" type="text" name="addressSearch" ng-model="address.addressSearch"/>
+        </div>
+
+        <!-- Street Address -->
+        <div class="flex-container">
+          <label>Street address</label>
+          <div class="flex-item c-2column"><input id="street_number" /></div>
+          <div class="flex-item c-2column"><input id="route" /></div>
+        </div>
+
+        <!-- City -->
+        <div class="flex-container">
+          <label>City</label>
+          <input class="flex-item c-1column" id="locality" />
+        </div>
+
+        <!-- State & Zip -->
+        <div class="flex-container">
+          <div class="flex-item c-2column">
+            <label>State</label>
+            <input id="administrative_area_level_1" />
+          </div>
+          <div class="flex-item c-2column">
+            <label>Zip code</label>
+            <input id="postal_code" />
+          </div>
+        </div>
+
+        <!-- Country -->
+        <div class="flex-container">
+          <label>Country</label>
+          <input class="flex-item c-1column" id="country" />
+        </div>
+
+        <button type="button" name="button" ng-click="logAddress()">Log</button>
+
+      </ng-form>
+    </div>
+  </div>
+
+
   <button ui-sref="orderCL.checkout" type="button" name="button">Get Started</button>
 </div>
