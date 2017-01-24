@@ -29,7 +29,8 @@ angular.module('app',['ui.router'])
       })
       .state('orderCL.selectBrand', {
         url: '/selectBrand',
-        templateUrl: './views/orderClSub/selectBrand.html'
+        templateUrl: './views/orderClSub/selectBrand.html',
+        controller: 'rxInputCtrl'
       })
       .state('orderCL.selectECP', {
         url: '/selectECP',

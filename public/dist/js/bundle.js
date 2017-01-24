@@ -23,7 +23,8 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
     controller: 'addressInputCtrl'
   }).state('orderCL.selectBrand', {
     url: '/selectBrand',
-    templateUrl: './views/orderClSub/selectBrand.html'
+    templateUrl: './views/orderClSub/selectBrand.html',
+    controller: 'rxInputCtrl'
   }).state('orderCL.selectECP', {
     url: '/selectECP',
     templateUrl: './views/orderClSub/selectECP.html'
@@ -68,6 +69,13 @@ angular.module('app').controller('navBarCtrl', function ($scope) {
     $scope.loggedIn = !$scope.loggedIn;
     console.log($scope.loggedIn);
   };
+});
+'use strict';
+
+angular.module('app').controller('rxInputCtrl', function ($scope, saveRxSrvc) {
+  $scope.test = saveRxSrvc.test;
+
+  $scope.saveRx = saveRxSrvc.saveRx;
 });
 'use strict';
 
@@ -169,6 +177,38 @@ angular.module('app').service('saveAddressSrvc', function () {
       console.log(addresses);
     } else {
       alert('missing address field');
+    }
+  };
+});
+'use strict';
+
+angular.module('app').service('saveRxSrvc', function () {
+
+  this.test = 'test success';
+
+  var prescriptions = [];
+
+  this.saveRx = function () {
+    var rxObj = {
+      rxSearch: document.getElementById('autocomplete').value,
+      rightPower: document.getElementById('right-Power').value,
+      rightBC: document.getElementById('right-BC').value,
+      rightDIA: document.getElementById('right-DIA').value,
+      rightCYL: document.getElementById('right-CYL').value,
+      rightAxis: document.getElementById('right-Axis').value,
+      leftPower: document.getElementById('left-Power').value,
+      leftBC: document.getElementById('left-BC').value,
+      leftDIA: document.getElementById('left-DIA').value,
+      leftCYL: document.getElementById('left-CYL').value,
+      leftAxis: document.getElementById('left-Axis').value
+
+    };
+
+    if (rxObj.leftPower && rxObj.leftBC && rxObj.leftDIA && rxObj.leftCYL && rxObj.leftAxis && rxObj.rightPower && rxObj.rightBC && rxObj.rightDIA && rxObj.rightCYL && rxObj.rightAxis) {
+      prescriptions.push(rxObj);
+      console.log(prescriptions);
+    } else {
+      alert('missing prescription field');
     }
   };
 });
