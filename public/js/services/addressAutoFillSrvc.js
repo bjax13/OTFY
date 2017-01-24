@@ -1,7 +1,7 @@
 angular.module('app')
   .service('addressAutoFillSrvc', function () {
 
-    this.test = 'svc bacon';
+    this.test = '**Test Data**';
 
     let placeSearch, autocomplete;
     let componentForm = {

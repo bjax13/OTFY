@@ -77,7 +77,7 @@ label {
   font-weight: 500;
   font-size: 16px; }
 
-.address-box {
+.address-box, .cl-brand-box {
   width: 100vw;
   display: flex;
   justify-content: center; }
@@ -151,6 +151,12 @@ h6 {
   padding-top: 65px;
   width: 100vw;
   min-height: 80vh; }
+
+.displayFlexCC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
 
 .sections {
   display: flex;

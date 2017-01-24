@@ -37,7 +37,7 @@ label {
   font-size: 16px;
 }
 
-.address-box{
+.address-box, .cl-brand-box{
   width: 100vw;
   display: flex;
   justify-content: center;

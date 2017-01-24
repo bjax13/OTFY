@@ -1,6 +1,8 @@
 angular.module('app')
   .service('saveAddressSrvc', function () {
 
+    let addresses = [];
+
     this.logAddress = function () {
       let addressObj = {
         addressSearch: document.getElementById('autocomplete').value,
@@ -12,9 +14,15 @@ angular.module('app')
         state: document.getElementById('administrative_area_level_1').value,
       };
 
-      console.log(addressObj);
-    };
 
+
+      if (addressObj.state && addressObj.streetNumber&& addressObj.streetName&& addressObj.city&& addressObj.country&& addressObj.postalCode) {
+        addresses.push(addressObj);
+        console.log(addresses);
+      }else {
+        alert('missing address field');
+      }
+    };
 
 
 

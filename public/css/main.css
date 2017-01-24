@@ -35,3 +35,9 @@ h6{
   min-height: 80vh;
 
 }
+.displayFlexCC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

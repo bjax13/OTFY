@@ -46,15 +46,6 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
 angular.module('app').controller('addressInputCtrl', function ($scope, addressAutoFillSrvc, saveAddressSrvc) {
   $scope.test = addressAutoFillSrvc.test;
 
-  $scope.address = {
-    addressSearch: null,
-    streetNumber: null,
-    route: null,
-    locality: null,
-    postalCode: null,
-    administrativeAreaLevel1: null
-  };
-
   $scope.logAddress = saveAddressSrvc.logAddress;
 
   $scope.initialize = addressAutoFillSrvc.initialize;
@@ -92,7 +83,7 @@ angular.module('app').directive('navBar', function () {
 
 angular.module('app').service('addressAutoFillSrvc', function () {
 
-  this.test = 'svc bacon';
+  this.test = '**Test Data**';
 
   var placeSearch = void 0,
       autocomplete = void 0;
@@ -160,6 +151,8 @@ angular.module('app').service('addressAutoFillSrvc', function () {
 
 angular.module('app').service('saveAddressSrvc', function () {
 
+  var addresses = [];
+
   this.logAddress = function () {
     var addressObj = {
       addressSearch: document.getElementById('autocomplete').value,
@@ -171,7 +164,12 @@ angular.module('app').service('saveAddressSrvc', function () {
       state: document.getElementById('administrative_area_level_1').value
     };
 
-    console.log(addressObj);
+    if (addressObj.state && addressObj.streetNumber && addressObj.streetName && addressObj.city && addressObj.country && addressObj.postalCode) {
+      addresses.push(addressObj);
+      console.log(addresses);
+    } else {
+      alert('missing address field');
+    }
   };
 });
 //# sourceMappingURL=bundle.js.map

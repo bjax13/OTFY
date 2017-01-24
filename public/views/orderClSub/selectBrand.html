@@ -1,5 +1,66 @@
 <!DOCTYPE html>
-<div class="test">
-  <h3>this is the select brand</h3>
-  <button ui-sref="orderCL.selectECP" type="button" name="button">Get Started</button>
+<div class="test displayFlexCC">
+
+  <h3>Enter Your Prescription {{test}} {{1+1}}</h3>
+  <br>
+  <img src="http://vignette3.wikia.nocookie.net/fantendo/images/8/86/Orange_Mystery_Box.png/revision/latest?cb=20111111133308" alt="Contact Lens Box">
+  <br>
+  <h3></h3>
+  <div class="cl-brand-box">
+    <div>
+      <ng-form class="form-address" id="address" name="addressForm">
+
+        <!-- Search by Brand Field -->
+        <div class="flex-container c-1column" id="locationField">
+          <label>Enter Brand of CL</label>
+          <input class="flex-item" id="autocomplete" placeholder="address, zip or city" ng-focus="brand()" type="text" name="addressSearch" ng-model="address.addressSearch"/>
+        </div>
+
+
+
+
+        <!-- Right Eye -->
+        <div class="flex-container">
+          <label class="flex-item c-2column">Right Eye</label>
+          <label class="flex-item c-2column">Left Eye</label>
+        </div>
+        <!-- Right Eye -->
+        <div class="flex-container">
+          <div class="flex-item c-2column"><input id="right-eye" placeholder="Power" /></div>
+          <div class="flex-item c-2column"><input id="route" placeholder="Power"/></div>
+        </div>
+
+
+        <!-- Left Eye -->
+        <div class="flex-container">
+          <label>City</label>
+          <input class="flex-item c-1column" id="locality" />
+        </div>
+
+        <!-- State & Zip -->
+        <div class="flex-container">
+          <div class="flex-item c-2column">
+            <label>State</label>
+            <input id="administrative_area_level_1" />
+          </div>
+          <div class="flex-item c-2column">
+            <label>Zip code</label>
+            <input id="postal_code" />
+          </div>
+        </div>
+
+        <!-- Country -->
+        <div class="flex-container">
+          <label>Country</label>
+          <input class="flex-item c-1column" id="Country" />
+        </div>
+
+        <button type="button" name="button" >test</button>
+
+      </ng-form>
+    </div>
+  </div>
+
+
+  <button ui-sref="orderCL.selectBrand" type="button" name="button">Get Started</button>
 </div>
