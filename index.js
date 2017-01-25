@@ -6,7 +6,7 @@ const config = require('./config.json');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/dist"));
 
 
 
