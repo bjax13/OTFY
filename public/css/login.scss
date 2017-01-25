@@ -2,7 +2,8 @@ $th_light:#E1F5C4;
 $th_red:#E84A5F;
 $th_lred:#FF847C;
 $th_dark:#2a363b;
-$th_blue:#355C7D;
+$th_blue:#115292;
+$th_ltblue:#04739f;
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
 $font:"Roboto",Helvetica,sans-serif;
@@ -10,7 +11,7 @@ $font:"Roboto",Helvetica,sans-serif;
 html,body {
 	margin:0;
 	padding:0;
-  // background-color:#222;
+  // background-color:#222; background opaqe look
 }
 
 :root {
@@ -149,11 +150,11 @@ button {
 	}
 
 	&--alt {
-		background-color:$th_red;
+		background-color:$th_blue;
 		padding-bottom: 25px;
 
 		.title {
-			@include strike(#fff,$th_red);
+			@include strike(#fff,$th_blue);
 
 			.text {
 				color:#fff;
@@ -194,7 +195,7 @@ button {
 		transition:all 0.2s ease-in-out;
 
 		&:hover {
-			background-color:$th_red;
+			background-color:$th_ltblue;
 		}
 	}
 }
@@ -258,6 +259,6 @@ label {
 
 	&.facebook {
 		background-color:#3b5998;
-		// display: none;
+		display: none;
 	}
 }
