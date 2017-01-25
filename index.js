@@ -46,17 +46,13 @@ passport.use('facebook', new FacebookStrategy ({
   profileFields:['id', 'displayName']
 },(accessToken,refreashToken, profile, done) =>{
   // Access the database
-
   db.getUserByFacebook([profile.id], function(err, user) {
-    user = user[0];
-    if (!user) {
-      console.log('CREATING USER');
+    if (!user.length) {
       db.createUserFacebook([profile.displayName, profile.id], function(err, user) {
-        console.log('USER CREATED', user);
-        return done(err, user, {scope: 'all'});
+        return done(err, user[0], {scope: 'all'});
       });
     } else {
-      return done(err, user);
+      return done(err, user[0]);
     }
   });
 }));
@@ -65,11 +61,7 @@ passport.serializeUser((user, done) => {
   return done(null, user);
 });
 passport.deserializeUser((user, done) => {
-  db.getUserById([id], function(err, user) {
-    user = user[0];
-    if (err) console.log(err);
-    else console.log('RETRIEVED USER');
-    console.log(user);
+  db.getUserByFacebook([user.facebookid], function(err, user) {
     done(null, user);
   });
 });
@@ -77,14 +69,15 @@ passport.deserializeUser((user, done) => {
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {successRedirect: '/' }), function(req, res) {
-    res.status(200).send(req.user);
+  passport.authenticate('facebook', {failureRedirect: '/login' }), function(req, res) {
+    res.redirect('/#/');
+    console.log(req.session);
 });
 
-app.get('/auth/me', function(req, res) {
-  if (!req.user) return res.sendStatus(404);
-  res.status(200).send(req.user);
-});
+// app.get('/auth/me', function(req, res) {
+//   if (!req.user) return res.sendStatus(404);
+//   res.status(200).send(req.user);
+// });
 
 app.get('/auth/logout', function(req, res) {
   req.logout();

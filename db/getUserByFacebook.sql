@@ -1,2 +1,2 @@
 select * from users
-where facebookId = $1;
+where facebookid = $1;

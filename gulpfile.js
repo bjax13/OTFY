@@ -61,14 +61,14 @@ gulp.task('build', [ 'build-css', 'build-js', 'move-html'], function() {
 
 });
 
-gulp.task('browserSync', function () {
-  browserSync.init({
-    server:{
-      baseDir:'dist'
-    }
-  });
-});
+// gulp.task('browserSync', function () {
+//   browserSync.init({
+//     server:{
+//       baseDir:'dist'
+//     }
+//   });
+// });
 
-gulp.task('watch',['build', 'browserSync'], function() {
+gulp.task('watch',['build'], function() {
     return gulp.watch(['./public/index.html','./public/app.js','./public/views/*.html','./public/views/orderClSub/*.html', './public/css/*.css', './public/css/**/*.scss', './public/js/**/*.js'], ['build']);
 });
