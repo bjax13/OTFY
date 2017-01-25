@@ -328,7 +328,8 @@ button {
       color: #fff;
       border-bottom-color: #fff; }
   .login--alt {
-    background-color: #E84A5F; }
+    background-color: #E84A5F;
+    padding-bottom: 25px; }
     .login--alt .title {
       text-align: center;
       position: relative;
@@ -397,7 +398,7 @@ button {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   position: absolute;
-  bottom: 0;
+  top: -50px;
   left: 100%;
   transform: translate(-50%, 50%);
   z-index: 3;
