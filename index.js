@@ -1,10 +1,10 @@
 const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const session = require('express-session');
 const cors = require('cors');
 const massive = require('massive');
-const bodyParser = require('body-parser');
 
 
 const config = require('./config.json');
@@ -43,7 +43,17 @@ passport.use('facebook', new FacebookStrategy ({
 },(accessToken,refreashToken, profile, done) =>{
   // Access the database
 
-  done(null, profile);
+  db.getUserByFacebook([profile.id], function(err, user) {
+    user = user[0];
+    if (!user) {
+      console.log('CREATING USER');
+      db.createUserFacebook([profile.displayName, profile.id], function(err, user) {
+        return done(err, user, {scope: 'all'});
+      });
+    } else {
+      return done(err, user);
+    }
+  });
 }));
 
 passport.serializeUser((user, done) => {
