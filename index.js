@@ -43,12 +43,16 @@ passport.use('facebook', new FacebookStrategy ({
   clientID: config.facebook.clientId,
   clientSecret: config.facebook.clientSecret,
   callbackURL:'http://localhost:3000/auth/facebook/callback',
-  profileFields:['id', 'displayName']
+  profileFields:['id', 'displayName','email']
 },(accessToken,refreashToken, profile, done) =>{
   // Access the database
   db.getUserByFacebook([profile.id], function(err, user) {
     if (!user.length) {
-      db.createUserFacebook([profile.displayName, profile.id], function(err, user) {
+      console.log("This is the Profile: " + profile);
+      console.log( profile);
+      db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
+        console.log('**********');
+        console.log(user);
         return done(err, user[0], {scope: 'all'});
       });
     } else {
@@ -66,7 +70,7 @@ passport.deserializeUser((user, done) => {
   });
 });
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope:['email']}));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', {failureRedirect: '/login' }), function(req, res) {

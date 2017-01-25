@@ -1,1 +1,1 @@
-insert into users (userlogin, facebookId) values ($1, $2) returning userlogin, facebookId;
+insert into users (userlogin, facebookId, email) values ($1, $2, $3) returning userlogin, facebookId , email;
