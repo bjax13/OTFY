@@ -45,16 +45,6 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
 });
 'use strict';
 
-angular.module('app').directive('navBar', function () {
-  return {
-    restrict: 'E',
-    templateUrl: "./views/directives/templates/navTpl.html",
-    scope: {},
-    controller: 'navBarCtrl'
-  };
-});
-'use strict';
-
 angular.module('app').controller('addressInputCtrl', function ($scope, addressAutoFillSrvc, saveAddressSrvc) {
   $scope.test = addressAutoFillSrvc.test;
 
@@ -98,6 +88,16 @@ angular.module('app').controller('rxInputCtrl', function ($scope, saveRxSrvc) {
   $scope.test = saveRxSrvc.test;
 
   $scope.saveRx = saveRxSrvc.saveRx;
+});
+'use strict';
+
+angular.module('app').directive('navBar', function () {
+  return {
+    restrict: 'E',
+    templateUrl: "./views/directives/templates/navTpl.html",
+    scope: {},
+    controller: 'navBarCtrl'
+  };
 });
 'use strict';
 
