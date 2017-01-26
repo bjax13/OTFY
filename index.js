@@ -20,8 +20,7 @@ app.use(cors());
 
 // app.use(cookieParser(config.secret));
 app.use(session({
-  // secret: config.secret,
-  secret: 'bacon',
+  secret: config.secret,
   saveUninitialized: true,
   resave: true
 }));
