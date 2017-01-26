@@ -70,10 +70,16 @@ passport.use(new GoogleStrategy({
   profileFields: ['id', 'displayName','email']
 },
 function(accessToken, refreshToken, profile, cb) {
-  db.getUserBygoogleId([profile.id], function(err, user) {
-    if (!user.length) {
+  console.log("Profile :" + profile);
+  console.log(profile);
+
+  db.getUserByGoogleId([profile.id], function(err, user) {
+    console.log('******');
+    console.log(user);
+    console.log(err);
+    if (!user) {
       console.log('CREATING USER');
-      db.createUserGoogle([profile.displayName, profile.id], function(err, user) {
+      db.createUserGoogle([profile.displayName, profile.id , profile.email], function(err, user) {
         console.log('USER CREATED', user[0]);
         return cb(err, user[0], {scope: 'all'});
       });
@@ -105,12 +111,13 @@ app.get('/auth/facebook/callback',
 
 // GoogleStrategy endpoints
 
-app.get('/auth/google', passport.authenticate('google', {session:false}, (req, res) => {
+app.get('/auth/google', passport.authenticate('google', {scope:['https://www.googleapis.com/auth/plus.login',
+       'https://www.googleapis.com/auth/plus.profile.emails.read']}, (req, res) => {
     const token = jwt.sign();
 }));
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', {successRedirect: '/' }), function(req, res) {
+  passport.authenticate('google', {successRedirect: '/' , failureRedirect: '/login'}), function(req, res) {
     res.status(200).send(req.user);
 });
 
