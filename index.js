@@ -48,13 +48,25 @@ passport.use('facebook', new FacebookStrategy ({
 },(accessToken,refreashToken, profile, done) =>{
   // Access the database
   db.getUserByFacebook([profile.id], function(err, user) {
-    if (!user.length) {
 
-      db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
-        console.log('**********');
-        console.log(user);
-        return done(err, user[0], {scope: 'all'});
+    if (!user.length) {
+      db.getUserByEmail([profile.emails[0].value], function (err, user) {
+
+        if (user.length) {
+
+          db.updateUserFacebookId([profile.id, profile.emails[0].value],function (err, user) {
+
+            console.log(user);
+            return done ( err, user[0], {scope: 'all'});
+          });
+        }else {
+          db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
+
+            return done(err, user[0], {scope: 'all'});
+          });
+        }
       });
+
     } else {
       return done(err, user[0]);
     }
