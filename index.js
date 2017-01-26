@@ -78,10 +78,10 @@ app.get('/auth/facebook/callback',
     console.log(req.session);
 });
 
-// app.get('/auth/me', function(req, res) {
-//   if (!req.user) return res.sendStatus(404);
-//   res.status(200).send(req.user);
-// });
+app.get('/auth/me', function(req, res) {
+  if (!req.user) return res.sendStatus(404);
+  res.status(200).send(req.user);
+});
 
 app.get('/auth/logout', function(req, res) {
   req.logout();

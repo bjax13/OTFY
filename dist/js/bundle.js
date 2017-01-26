@@ -13,7 +13,7 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
   }).state('login', {
     url: '/login',
     templateUrl: './views/login.html',
-    controller: 'navBarCtrl'
+    controller: 'loginCtrl'
   }).state('orderCL', {
     url: '/orderCL',
     templateUrl: './views/orderCL.html'
@@ -67,6 +67,19 @@ angular.module('app').controller('ecpInputCtrl', function ($scope, addressAutoFi
 });
 'use strict';
 
+angular.module('app').controller('loginCtrl', function ($scope) {
+
+  $scope.test = 'again';
+  $scope.localSignup = true;
+
+  $scope.togglelogin = function () {
+
+    $scope.localSignup = !$scope.localSignup;
+    console.log($scope.localSignup);
+  };
+});
+'use strict';
+
 angular.module('app').controller('mainCtrl', function ($scope) {
 
   $scope.test = 'again';
@@ -74,7 +87,7 @@ angular.module('app').controller('mainCtrl', function ($scope) {
 'use strict';
 
 angular.module('app').controller('navBarCtrl', function ($scope) {
-  $scope.loggedIn = false;
+  $scope.loggedIn = true;
 
   $scope.changeLoggin = function () {
 

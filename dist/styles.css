@@ -282,9 +282,10 @@ button {
     .row .col-12, .row .cor-12 {
       width: 100%; }
 
+.local-wrap {
+  position: relative; }
+
 @media all and (max-width: 800px) {
-  .or {
-    display: none; }
   .row .col, .row .cor {
     width: 100% !important; } }
 
@@ -398,8 +399,8 @@ button {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   position: absolute;
-  top: -50px;
-  left: 100%;
+  bottom: 0px;
+  left: 50%;
   transform: translate(-50%, 50%);
   z-index: 3;
   cursor: default;

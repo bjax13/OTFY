@@ -16,7 +16,7 @@ angular.module('app',['ui.router'])
       .state('login', {
         url: '/login',
         templateUrl: './views/login.html',
-        controller: 'navBarCtrl'
+        controller: 'loginCtrl'
       })
       .state('orderCL', {
         url: '/orderCL',

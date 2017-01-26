@@ -73,6 +73,9 @@ button {
 		}
 	}
 }
+.local-wrap{
+	position: relative;
+}
 
 
 @mixin strike($line,$bg) {
@@ -101,9 +104,9 @@ button {
 }
 
 @media all and (max-width: 800px) {
-	.or {
-		display:none;
-	}
+	// .or {
+	// 	display:none;
+	// }
 
 	.row {
 		.col,.cor {
@@ -207,8 +210,8 @@ button {
 	box-shadow:0 0 5px 1px rgba(0,0,0,.4);
 	border-radius: 50%;
 	position:absolute;
-	top: -50px;
-	left:100%;
+	bottom: 0px;
+	left: 50%;
 	transform:translate(-50%,50%);
 	z-index:3;
 	cursor:default;

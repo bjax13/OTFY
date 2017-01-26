@@ -5,8 +5,10 @@
     <li ui-sref="main">main</li>
     <li ui-sref="orderCL">orderCL</li>
     <li ui-sref="userInfo">userInfo</li>
-    <li ui-sref="login">login {{loggedIn}}</li>
-    <a href="/auth/logout"><li >logout {{loggedIn}}</li></a>
+    <!-- <li ui-sref="login" ng-show="loggedIn" ng-click="changeLoggin()">login {{loggedIn}}</li> -->
+    <li ui-sref="login" >login {{loggedIn}}</li>
+    <!-- <a href="/auth/logout" ng-hide="loggedIn" ng-click="changeLoggin()"><li >logout {{loggedIn}}</li></a> -->
+    <a href="/auth/logout" ><li >logout {{loggedIn}}</li></a>
 
 
   </ul>
