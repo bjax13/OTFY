@@ -46,27 +46,19 @@ passport.use('facebook', new FacebookStrategy ({
   callbackURL:'http://localhost:3000/auth/facebook/callback',
   profileFields:['id', 'displayName','email']
 },(accessToken,refreashToken, profile, done) =>{
-  // Access the database
-  db.getUserByFacebook([profile.id], function(err, user) {
-
+  db.getUserByFacebookId([profile.id], function(err, user) {
     if (!user.length) {
       db.getUserByEmail([profile.emails[0].value], function (err, user) {
-
         if (user.length) {
-
           db.updateUserFacebookId([profile.id, profile.emails[0].value],function (err, user) {
-
-            console.log(user);
             return done ( err, user[0], {scope: 'all'});
           });
         }else {
           db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
-
             return done(err, user[0], {scope: 'all'});
           });
         }
       });
-
     } else {
       return done(err, user[0]);
     }
@@ -82,11 +74,19 @@ passport.use(new GoogleStrategy({
   profileFields: ['id', 'displayName','email']
 },
 function(accessToken, refreshToken, profile, cb) {
-
+  console.log(profile);
   db.getUserByGoogleId([profile.id], function(err, user) {
-    if (!user) {
-      db.createUserGoogle([profile.displayName, profile.id , profile.email], function(err, user) {
-        return cb(err, user[0], {scope: 'all'});
+    if (!user.length) {
+      db.getUserByEmail([profile.email], function (err, user) {
+        if (user.length) {
+          db.updateUserGoogleId([profile.id, profile.email], function (err, user) {
+            return cb (err, user[0], {scope:'all'});
+          });
+        }else {
+          db.createUserGoogle([profile.displayName, profile.id , profile.email], function(err, user) {
+            return cb(err, user[0], {scope: 'all'});
+          });
+        }
       });
     } else {
       return cb(err, user[0]);
@@ -100,13 +100,16 @@ passport.serializeUser((user, done) => {
   return done(null, user);
 });
 passport.deserializeUser((user, done) => {
+  console.log('deserializeUser');
+  console.log(user);
+  console.log('***');
   if (!user.facebookid) {
     db.getUserByUsername([user.username], function(err, u){
       return done(null,u);
     });
   }
   else {
-    db.getUserByFacebook([user.facebookid], function(err, user) {
+    db.getUserByFacebookId([user.facebookid], function(err, user) {
       done(null, user);
     });
   }
@@ -181,12 +184,13 @@ app.post('/login', function(req, res, done){
 
 
 
-// app.post('/api/user', function (req, res) {
-//   console.log(req.body);
-//   db.createUserLocal([req.body.username,req.body.password,req.body.email], function (err, user) {
-//     res.status(200).json('success');
-//   });
-// });
+app.post('/api/user', function (req, res) {
+  console.log(req.body);
+
+  db.createUserLocal([req.body.username,req.body.password,req.body.email], function (err, user) {
+    res.status(200).json('success');
+  });
+});
 
 
 // app.get('/login', function(req, res) {
