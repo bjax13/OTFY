@@ -7,7 +7,8 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const cors = require('cors');
 const massive = require('massive');
-// const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const config = require('./config.json');
 
