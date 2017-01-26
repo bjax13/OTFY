@@ -70,14 +70,10 @@ passport.use(new GoogleStrategy({
   profileFields: ['id', 'displayName','email']
 },
 function(accessToken, refreshToken, profile, cb) {
-  
 
   db.getUserByGoogleId([profile.id], function(err, user) {
-
     if (!user) {
-
       db.createUserGoogle([profile.displayName, profile.id , profile.email], function(err, user) {
-
         return cb(err, user[0], {scope: 'all'});
       });
     } else {
@@ -88,13 +84,37 @@ function(accessToken, refreshToken, profile, cb) {
 
 
 passport.serializeUser((user, done) => {
+
   return done(null, user);
 });
 passport.deserializeUser((user, done) => {
-  db.getUserByFacebook([user.facebookid], function(err, user) {
-    done(null, user);
-  });
+  if (!user.facebookid) {
+    db.getUserByUsername([user.username], function(err, u){
+      return done(null,u);
+    });
+  }
+  else {
+    db.getUserByFacebook([user.facebookid], function(err, user) {
+      done(null, user);
+    });
+  }
+
 });
+
+// LocalStrategy
+
+// passport.use(new LocalStrategy(
+//   function(username, password, done) {
+//
+//     db.getUserByUsername([username], function(err, user) {
+//
+//       if (err) { return done(err); }
+//       if (!user.length) { return done(null, false); }
+//       if (user[0].password != password) { return done(null, false); }
+//       return done(null, user[0]);
+//     });
+//   }
+// ));
 
 
 // FacebookStrategy endpoints
@@ -120,10 +140,46 @@ app.get('/auth/google/callback',
 
 // LocalStrategy endpoints
 
-app.get('/auth/me', function(req, res) {
-  if (!req.user) return res.sendStatus(404);
-  res.status(200).send(req.user);
-});
+// app.get('/',
+//   function(req, res) {
+//     res.render('main', { user: req.user });
+//   });
+//
+// app.get('/login',
+//   function(req, res){
+//     res.render('login');
+//   });
+
+app.post('/login', function(req, res, done){
+      db.getUserByUsername([req.body.username], function(err, user) {
+        if(!user.length){
+          res.json(false);
+          return;
+        }
+        if (err) { console.log(err); return;}
+        if (user[0].password != req.body.password) {
+        res.json(false);
+        }
+        else {
+          res.json(true);
+          req.session.passport.user = user[0];
+        }
+      });
+    });
+
+
+
+// app.post('/api/user', function (req, res) {
+//   console.log(req.body);
+//   db.createUserLocal([req.body.username,req.body.password,req.body.email], function (err, user) {
+//     res.status(200).json('success');
+//   });
+// });
+
+
+// app.get('/login', function(req, res) {
+//   res.render('login');
+// });
 
 app.get('/auth/logout', function(req, res) {
   req.logout();

@@ -18,15 +18,15 @@
                     <div class="title"><span class="text">Login</span></div>
                     <div class="login--body">
                         <label>
-                          <div class="label">Email address</div>
-                          <input type="text" placeholder="john@doe.com" required />
+                          <div class="label">Username</div>
+                          <input ng-model="existing.username" type="text" placeholder="starkiller97" required />
                         </label>
                         <label>
                           <div class="label">Password</div>
-                          <input type="password" placeholder="*********" required />
+                          <input ng-model="existing.password" type="password" placeholder="*********" required />
                         </label>
                         <div class="sbmt">
-                            <button class="sbmt--btn">Login</button>
+                            <button ng-click= "login(existing)" class="sbmt--btn">Login</button>
                         </div>
                     </div>
 
@@ -37,23 +37,23 @@
                     <div class="title"><span class="text">Signup</span></div>
                     <div class="login--body">
                         <label>
-                          <div class="label">Username</div>
-                          <input type="text" placeholder="starkiller97" required />
+                          <div class="label" >Username</div>
+                          <input ng-model="user.username" type="text" placeholder="starkiller97" required />
                         </label>
                         <label>
                           <div class="label">Email address</div>
-                          <input type="text" placeholder="john@doe.com" required />
+                          <input ng-model="user.email" type="text" placeholder="john@doe.com" required />
                         </label>
                         <label>
                           <div class="label">Password</div>
-                          <input type="password" placeholder="*********" required />
+                          <input ng-model="user.password" type="password" placeholder="*********" required />
                         </label>
                         <label>
                           <div class="label">Confirm password</div>
-                          <input type="password" placeholder="*********" required />
+                          <input ng-model="user.password2" type="password" placeholder="*********" required />
                         </label>
                         <div class="sbmt">
-                            <button class="sbmt--btn">Signup</button>
+                            <button ng-click="createUserLocal(user)" class="sbmt--btn">Signup</button>
                         </div>
                     </div>
                 </div>
