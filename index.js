@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const cors = require('cors');
 const massive = require('massive');
 // const cookieParser = require('cookie-parser');

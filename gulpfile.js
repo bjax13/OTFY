@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     del = require('del'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
@@ -11,10 +11,6 @@ var gulp = require('gulp'),
 
 const browserSync = require('browser-sync');
 
-
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps');
 
 var CacheBuster = require('gulp-cachebust');
 var cachebust = new CacheBuster();
