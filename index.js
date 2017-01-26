@@ -49,8 +49,7 @@ passport.use('facebook', new FacebookStrategy ({
   // Access the database
   db.getUserByFacebook([profile.id], function(err, user) {
     if (!user.length) {
-      console.log("This is the Profile: " + profile);
-      console.log( profile);
+
       db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
         console.log('**********');
         console.log(user);
@@ -62,6 +61,29 @@ passport.use('facebook', new FacebookStrategy ({
   });
 }));
 
+// GoogleStrategy
+
+passport.use(new GoogleStrategy({
+  clientID: config.google.clientId,
+  clientSecret: config.google.clientSecret,
+  callbackURL: "http://localhost:3000/auth/google/callback",
+  profileFields: ['id', 'displayName','email']
+},
+function(accessToken, refreshToken, profile, cb) {
+  db.getUserBygoogleId([profile.id], function(err, user) {
+    if (!user.length) {
+      console.log('CREATING USER');
+      db.createUserGoogle([profile.displayName, profile.id], function(err, user) {
+        console.log('USER CREATED', user[0]);
+        return cb(err, user[0], {scope: 'all'});
+      });
+    } else {
+      return cb(err, user[0]);
+    }
+  });
+}));
+
+
 passport.serializeUser((user, done) => {
   return done(null, user);
 });
@@ -71,6 +93,8 @@ passport.deserializeUser((user, done) => {
   });
 });
 
+
+// FacebookStrategy endpoints
 app.get('/auth/facebook', passport.authenticate('facebook', {scope:['email']}));
 
 app.get('/auth/facebook/callback',
@@ -78,6 +102,19 @@ app.get('/auth/facebook/callback',
     res.redirect('/#/');
     console.log(req.session);
 });
+
+// GoogleStrategy endpoints
+
+app.get('/auth/google', passport.authenticate('google', {session:false}, (req, res) => {
+    const token = jwt.sign();
+}));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', {successRedirect: '/' }), function(req, res) {
+    res.status(200).send(req.user);
+});
+
+// LocalStrategy endpoints
 
 app.get('/auth/me', function(req, res) {
   if (!req.user) return res.sendStatus(404);
