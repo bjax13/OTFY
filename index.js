@@ -70,17 +70,14 @@ passport.use(new GoogleStrategy({
   profileFields: ['id', 'displayName','email']
 },
 function(accessToken, refreshToken, profile, cb) {
-  console.log("Profile :" + profile);
-  console.log(profile);
+  
 
   db.getUserByGoogleId([profile.id], function(err, user) {
-    console.log('******');
-    console.log(user);
-    console.log(err);
+
     if (!user) {
-      console.log('CREATING USER');
+
       db.createUserGoogle([profile.displayName, profile.id , profile.email], function(err, user) {
-        console.log('USER CREATED', user[0]);
+
         return cb(err, user[0], {scope: 'all'});
       });
     } else {
