@@ -2,7 +2,7 @@ const app = require('../index.js');
 const db = app.get('db');
 
 module.exports= {
-  googleAuth: function(accessToken, refreshToken, profile, cb) {
+  googleAuth: (accessToken, refreshToken, profile, cb) => {
     console.log(profile);
     db.getUserByGoogleId([profile.id], function(err, user) {
       if (!user.length) {
@@ -22,22 +22,22 @@ module.exports= {
       }
     });
   },
-  facebookAuth: (accessToken,refreashToken, profile, done) =>{
+  facebookAuth: (accessToken,refreashToken, profile, cb) => {
     db.getUserByFacebookId([profile.id], function(err, user) {
       if (!user.length) {
         db.getUserByEmail([profile.emails[0].value], function (err, user) {
           if (user.length) {
             db.updateUserFacebookId([profile.id, profile.emails[0].value],function (err, user) {
-              return done ( err, user[0], {scope: 'all'});
+              return cb ( err, user[0], {scope: 'all'});
             });
           }else {
             db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
-              return done(err, user[0], {scope: 'all'});
+              return cb(err, user[0], {scope: 'all'});
             });
           }
         });
       } else {
-        return done(err, user[0]);
+        return cb(err, user[0]);
       }
     });
   },
@@ -56,6 +56,10 @@ module.exports= {
       });
     }
 
+  },
+  facebookCallback: (req, res) => {
+    res.redirect('/#/');
+    console.log(req.session);
   },
 
 };

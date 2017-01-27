@@ -57,34 +57,16 @@ passport.use(new GoogleStrategy({
 },oAuthCtrl.googleAuth));
 
 
-
 passport.serializeUser(oAuthCtrl.serializeUser);
 passport.deserializeUser(oAuthCtrl.deserializeUser);
 
 // LocalStrategy
 
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//
-//     db.getUserByUsername([username], function(err, user) {
-//
-//       if (err) { return done(err); }
-//       if (!user.length) { return done(null, false); }
-//       if (user[0].password != password) { return done(null, false); }
-//       return done(null, user[0]);
-//     });
-//   }
-// ));
-
-
 // FacebookStrategy endpoints
 app.get('/auth/facebook', passport.authenticate('facebook', {scope:['email']}));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', {failureRedirect: '/login' }), function(req, res) {
-    res.redirect('/#/');
-    console.log(req.session);
-});
+  passport.authenticate('facebook', {failureRedirect: '/login' }), oAuthCtrl.facebookCallback);
 
 // GoogleStrategy endpoints
 
