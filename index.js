@@ -39,7 +39,7 @@ const db = app.get('db');
 
 const oAuthCtrl = require('./serverCtrls/oAuthCtrl.js');
 
-
+// *** start oAuth  ****
 // FacebookStrategy
 passport.use('facebook', new FacebookStrategy ({
   clientID: config.facebook.clientId,
@@ -56,7 +56,7 @@ passport.use(new GoogleStrategy({
   profileFields: ['id', 'displayName','email']
 },oAuthCtrl.googleAuth));
 
-
+//serialize for oAuth
 passport.serializeUser(oAuthCtrl.serializeUser);
 passport.deserializeUser(oAuthCtrl.deserializeUser);
 
@@ -83,6 +83,11 @@ app.post('/api/user', oAuthCtrl.createUserLocal);
 
 // Logout
 app.get('/auth/logout', oAuthCtrl.logout);
+
+// *** end oAuth ****
+
+
+
 
 app.listen(config.port, function () {
   console.log("it is ALIVE!!  @"+ port);
