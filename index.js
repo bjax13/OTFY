@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require('./config.json');
 
-const app = express();
+const app = module.exports = express();
 const port = config.port;
 
 app.use(bodyParser.json());
@@ -37,84 +37,29 @@ app.set('db', massiveInstance);
 const db = app.get('db');
 // end setup of database
 
+const oAuthCtrl = require('./serverCtrls/oAuthCtrl.js');
+
 
 // FacebookStrategy
-
 passport.use('facebook', new FacebookStrategy ({
   clientID: config.facebook.clientId,
   clientSecret: config.facebook.clientSecret,
   callbackURL:'http://localhost:3000/auth/facebook/callback',
   profileFields:['id', 'displayName','email']
-},(accessToken,refreashToken, profile, done) =>{
-  db.getUserByFacebookId([profile.id], function(err, user) {
-    if (!user.length) {
-      db.getUserByEmail([profile.emails[0].value], function (err, user) {
-        if (user.length) {
-          db.updateUserFacebookId([profile.id, profile.emails[0].value],function (err, user) {
-            return done ( err, user[0], {scope: 'all'});
-          });
-        }else {
-          db.createUserFacebook([profile.displayName, profile.id , profile.emails[0].value], function(err, user) {
-            return done(err, user[0], {scope: 'all'});
-          });
-        }
-      });
-    } else {
-      return done(err, user[0]);
-    }
-  });
-}));
+},oAuthCtrl.facebookAuth));
 
 // GoogleStrategy
-
 passport.use(new GoogleStrategy({
   clientID: config.google.clientId,
   clientSecret: config.google.clientSecret,
   callbackURL: "http://localhost:3000/auth/google/callback",
   profileFields: ['id', 'displayName','email']
-},
-function(accessToken, refreshToken, profile, cb) {
-  console.log(profile);
-  db.getUserByGoogleId([profile.id], function(err, user) {
-    if (!user.length) {
-      db.getUserByEmail([profile.email], function (err, user) {
-        if (user.length) {
-          db.updateUserGoogleId([profile.id, profile.email], function (err, user) {
-            return cb (err, user[0], {scope:'all'});
-          });
-        }else {
-          db.createUserGoogle([profile.displayName, profile.id , profile.email], function(err, user) {
-            return cb(err, user[0], {scope: 'all'});
-          });
-        }
-      });
-    } else {
-      return cb(err, user[0]);
-    }
-  });
-}));
+},oAuthCtrl.googleAuth));
 
 
-passport.serializeUser((user, done) => {
 
-  return done(null, user);
-});
-passport.deserializeUser((user, done) => {
-  console.log('deserializeUser');
-  console.log(user);
-  console.log('***');
-  if (!user.facebookid) {
-    db.getUserByUsername([user.username], function(err, u){
-      return done(null,u);
-    });
-  }
-  else {
-    db.getUserByFacebookId([user.facebookid], function(err, user) {
-      done(null, user);
-    });
-  }
-
-});
+passport.serializeUser(oAuthCtrl.serializeUser);
+passport.deserializeUser(oAuthCtrl.deserializeUser);
 
 // LocalStrategy
 
@@ -191,7 +136,6 @@ app.post('/api/user', function (req, res) {
     res.status(200).json('success');
   });
 });
-
 
 // app.get('/login', function(req, res) {
 //   res.render('login');
