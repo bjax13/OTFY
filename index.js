@@ -10,7 +10,9 @@ const massive = require('massive');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
+// local required files
 const config = require('./config.json');
+
 
 const app = module.exports = express();
 const port = config.port;
@@ -18,7 +20,6 @@ const port = config.port;
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use(cookieParser(config.secret));
 app.use(session({
   secret: config.secret,
   saveUninitialized: true,
@@ -37,7 +38,9 @@ app.set('db', massiveInstance);
 const db = app.get('db');
 // end setup of database
 
+// required server Ctrl files
 const oAuthCtrl = require('./serverCtrls/oAuthCtrl.js');
+
 
 // *** start oAuth  ****
 // FacebookStrategy
