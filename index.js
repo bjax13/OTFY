@@ -89,6 +89,12 @@ app.get('/auth/logout', oAuthCtrl.logout);
 
 // *** end oAuth ****
 
+app.get('/api/products', function (req, res, done) {
+  db.getAllProducts (function (err, products) {
+    res.status(200).json(products);
+  });
+});
+
 
 
 

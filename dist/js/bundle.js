@@ -116,7 +116,11 @@ angular.module('app').controller('navBarCtrl', function ($scope) {
 angular.module('app').controller('rxInputCtrl', function ($scope, rxSrvc) {
   $scope.test = rxSrvc.test;
 
-  $scope.products = rxSrvc.getProducts();
+  $scope.getProducts = function () {
+    $scope.products = rxSrvc.getProducts();
+  };
+
+  $scope.getProducts();
 });
 'use strict';
 
@@ -225,7 +229,7 @@ angular.module('app').service('ecpSaveSrvc', function () {
 });
 'use strict';
 
-angular.module('app').service('rxSrvc', function () {
+angular.module('app').service('rxSrvc', function ($http) {
 
   this.test = 'k';
 
@@ -240,6 +244,17 @@ angular.module('app').service('rxSrvc', function () {
     price: 69,
     productName: 'TestProduct2'
   }];
+
+  var populateProductList = function populateProductList() {
+    return $http({
+      method: 'GET',
+      url: '/api/products'
+    });
+  };
+  populateProductList().then(function (response) {
+    products = response.data;
+    console.log(response.data);
+  });
 
   this.getProducts = function () {
     return products;

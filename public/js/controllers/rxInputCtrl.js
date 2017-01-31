@@ -3,8 +3,16 @@ angular.module('app')
     $scope.test = rxSrvc.test;
 
 
-    $scope.products = rxSrvc.getProducts();
+    $scope.getProducts = function () {
+      rxSrvc.getProducts().then(function (response) {
+        $scope.products = response.data;
 
-    
+
+      });
+    };
+
+    $scope.getProducts();
+
+
 
   });

@@ -1,5 +1,5 @@
 angular.module('app')
-  .service('rxSrvc', function () {
+  .service('rxSrvc', function ($http) {
 
     this.test = 'k';
 
@@ -17,6 +17,17 @@ angular.module('app')
         productName: 'TestProduct2'
       }
     ];
+
+    let populateProductList = function () {
+      return $http({
+				method: 'GET',
+				url: '/api/products'
+			});
+    };
+    populateProductList().then(function (response) {
+      products = response.data;
+      console.log(response.data);
+    });
 
     this.getProducts = function () {
       return products;

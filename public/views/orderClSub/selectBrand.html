@@ -13,15 +13,15 @@
                 <!-- Search by Brand Field -->
                 <div class="flex-container c-1column" id="locationField">
                     <label>Enter Brand of CL</label>
-                    <input class="flex-item" id="autocomplete" placeholder="Acuvue..." ng-focus="brand()" type="text" ng-model="contactSearch" />
+                    <input class="flex-item" id="autocomplete" placeholder="Acuvue..." type="text" ng-model="contactSearch" />
                 </div>
 
 
-                <div class="flex-container c-1column" ng-repeat = "product in products">
+                <div class="flex-container c-1column" ng-repeat = "product in products | filter:contactSearch">
                     <div class="">
-                      <h3>Manufacture {{product.manufacture}}</h3>
-                      <h3>Contact lens brand {{product.productName}}</h3>
-                      <h3>price{{product.price}}</h3>
+                      <h5>Manufacture {{product.manufacturer}}</h5>
+                      <h5>Contact lens brand {{product.productname}}</h5>
+                      <h5>price {{product.regularprice | currency}}</h5>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@
         </div> -->
 
 
-                <button type="button" name="button" ng-click="saveRx()">test</button>
+                <button type="button" name="button" ng-click="getProducts()">test</button>
 
             </ng-form>
         </div>
