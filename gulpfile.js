@@ -66,5 +66,5 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('watch',['build', 'browserSync'], function() {
-    return gulp.watch(['./public/index.html','./public/app.js','./public/views/*.html','./public/views/orderClSub/*.html', './public/css/*.css', './public/css/**/*.scss', './public/js/**/*.js'], ['build']);
+    return gulp.watch(['./public/index.html','./public/app.js','./public/views/*.html','./public/views/orderClSub/*.html', './public/css/*.css', './public/css/**/*.scss', './public/js/**/*.js']);
 });

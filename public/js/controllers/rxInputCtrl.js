@@ -1,9 +1,10 @@
 angular.module('app')
-  .controller('rxInputCtrl', function ($scope, saveRxSrvc ) {
-    $scope.test = saveRxSrvc.test;
+  .controller('rxInputCtrl', function ($scope, rxSrvc ) {
+    $scope.test = rxSrvc.test;
 
 
-    $scope.saveRx = saveRxSrvc.saveRx;
+    $scope.products = rxSrvc.getProducts();
 
+    
 
   });

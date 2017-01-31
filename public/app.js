@@ -30,6 +30,7 @@ angular.module('app',['ui.router'])
       .state('orderCL.selectBrand', {
         url: '/selectBrand',
         templateUrl: './views/orderClSub/selectBrand.html',
+        // scope : {},
         controller: 'rxInputCtrl'
       })
       .state('orderCL.selectECP', {

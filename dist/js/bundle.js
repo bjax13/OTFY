@@ -24,6 +24,7 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
   }).state('orderCL.selectBrand', {
     url: '/selectBrand',
     templateUrl: './views/orderClSub/selectBrand.html',
+    // scope : {},
     controller: 'rxInputCtrl'
   }).state('orderCL.selectECP', {
     url: '/selectECP',
@@ -112,10 +113,10 @@ angular.module('app').controller('navBarCtrl', function ($scope) {
 });
 'use strict';
 
-angular.module('app').controller('rxInputCtrl', function ($scope, saveRxSrvc) {
-  $scope.test = saveRxSrvc.test;
+angular.module('app').controller('rxInputCtrl', function ($scope, rxSrvc) {
+  $scope.test = rxSrvc.test;
 
-  $scope.saveRx = saveRxSrvc.saveRx;
+  $scope.products = rxSrvc.getProducts();
 });
 'use strict';
 
@@ -224,6 +225,28 @@ angular.module('app').service('ecpSaveSrvc', function () {
 });
 'use strict';
 
+angular.module('app').service('rxSrvc', function () {
+
+  this.test = 'k';
+
+  var products = [{
+    id: 1,
+    manufacture: "Johnson & Johnson",
+    price: 39,
+    productName: 'TestProduct'
+  }, {
+    id: 2,
+    manufacture: "Alcon",
+    price: 69,
+    productName: 'TestProduct2'
+  }];
+
+  this.getProducts = function () {
+    return products;
+  };
+});
+'use strict';
+
 angular.module('app').service('saveAddressSrvc', function () {
 
   var addresses = [];
@@ -244,38 +267,6 @@ angular.module('app').service('saveAddressSrvc', function () {
       console.log(addresses);
     } else {
       alert('missing address field');
-    }
-  };
-});
-'use strict';
-
-angular.module('app').service('saveRxSrvc', function () {
-
-  this.test = 'test success';
-
-  var prescriptions = [];
-
-  this.saveRx = function () {
-    var rxObj = {
-      rxSearch: document.getElementById('autocomplete').value,
-      rightPower: document.getElementById('right-Power').value,
-      rightBC: document.getElementById('right-BC').value,
-      rightDIA: document.getElementById('right-DIA').value,
-      rightCYL: document.getElementById('right-CYL').value,
-      rightAxis: document.getElementById('right-Axis').value,
-      leftPower: document.getElementById('left-Power').value,
-      leftBC: document.getElementById('left-BC').value,
-      leftDIA: document.getElementById('left-DIA').value,
-      leftCYL: document.getElementById('left-CYL').value,
-      leftAxis: document.getElementById('left-Axis').value
-
-    };
-
-    if (rxObj.leftPower && rxObj.leftBC && rxObj.leftDIA && rxObj.leftCYL && rxObj.leftAxis && rxObj.rightPower && rxObj.rightBC && rxObj.rightDIA && rxObj.rightCYL && rxObj.rightAxis) {
-      prescriptions.push(rxObj);
-      console.log(prescriptions);
-    } else {
-      alert('missing prescription field');
     }
   };
 });
