@@ -24,7 +24,6 @@ angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouter
   }).state('orderCL.selectBrand', {
     url: '/selectBrand',
     templateUrl: './views/orderClSub/selectBrand.html',
-    // scope : {},
     controller: 'rxInputCtrl'
   }).state('orderCL.selectECP', {
     url: '/selectECP',
@@ -117,7 +116,10 @@ angular.module('app').controller('rxInputCtrl', function ($scope, rxSrvc) {
   $scope.test = rxSrvc.test;
 
   $scope.getProducts = function () {
-    $scope.products = rxSrvc.getProducts();
+
+    rxSrvc.populateProductList().then(function (response) {
+      $scope.products = response.data;
+    });
   };
 
   $scope.getProducts();
@@ -233,31 +235,11 @@ angular.module('app').service('rxSrvc', function ($http) {
 
   this.test = 'k';
 
-  var products = [{
-    id: 1,
-    manufacture: "Johnson & Johnson",
-    price: 39,
-    productName: 'TestProduct'
-  }, {
-    id: 2,
-    manufacture: "Alcon",
-    price: 69,
-    productName: 'TestProduct2'
-  }];
-
-  var populateProductList = function populateProductList() {
+  this.populateProductList = function () {
     return $http({
       method: 'GET',
       url: '/api/products'
     });
-  };
-  populateProductList().then(function (response) {
-    products = response.data;
-    console.log(response.data);
-  });
-
-  this.getProducts = function () {
-    return products;
   };
 });
 'use strict';

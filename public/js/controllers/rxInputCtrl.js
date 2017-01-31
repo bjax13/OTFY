@@ -4,9 +4,9 @@ angular.module('app')
 
 
     $scope.getProducts = function () {
-      rxSrvc.getProducts().then(function (response) {
-        $scope.products = response.data;
 
+      rxSrvc.populateProductList().then(function (response) {
+        $scope.products = response.data;
 
       });
     };

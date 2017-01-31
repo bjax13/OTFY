@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <div class="test displayFlexCC">
 
-    <h3>Enter Your Prescription {{test}} {{1+1}}</h3>
+    <h3>Enter Your Prescriptin {{test}} {{1+1}}</h3>
     <br>
     <img src="http://vignette3.wikia.nocookie.net/fantendo/images/8/86/Orange_Mystery_Box.png/revision/latest?cb=20111111133308" alt="Contact Lens Box">
     <br>
     <h3></h3>
     <div class="cl-brand-box">
-        <div>
+        <div >
             <ng-form class="form-address" id="prescription" name="brandForm">
 
                 <!-- Search by Brand Field -->
@@ -19,6 +19,10 @@
 
                 <div class="flex-container c-1column" ng-repeat = "product in products | filter:contactSearch">
                     <div class="">
+                      <div class="product-img">
+                        <img ng-src="{{product.imglink}}" alt="{{product.name}}">
+                      </div>
+
                       <h5>Manufacture {{product.manufacturer}}</h5>
                       <h5>Contact lens brand {{product.productname}}</h5>
                       <h5>price {{product.regularprice | currency}}</h5>

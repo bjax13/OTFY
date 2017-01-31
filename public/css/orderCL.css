@@ -23,3 +23,9 @@
 .one, .two, .three{
   width: 100%;
 }
+.product-img{
+  width: 200px;
+}
+.product-img img{
+  width: 100%;
+}
