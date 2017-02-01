@@ -4,15 +4,21 @@
 </div>
 <div ng-show="attrs.id">
     <div>
-        <span ng-show="quantityMax">
-            <select name="quantity" id="quantity" ng-model="q"
-                    ng-options=" v for v in qtyOpt"></select>
-        </span>
-        <a class="btn btn-sm btn-primary"
+
+      <a class="btn btn-sm btn-primary"
            ng-click="ngCart.addItem(id, name, price, q, data)"
-           ng-transclude></a>
+           ng-transclude><button type="button" name="button"><img src="http://www.nopcommerce.com/images/thumbs/0003726_400.png" alt="Add to Cart"></button></a>
+       <span ng-show="quantityMax">
+           <select name="quantity" id="quantity" ng-model="q"
+                   ng-options=" v for v in qtyOpt"></select>
+       </span>
     </div>
-    <mark  ng-show="inCart()">
-        This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>
-    </mark>
+    <div  ng-show="inCart()">
+        <h6>In your cart.</h6>
+        <br>
+        <button ui-sref="orderCL.checkout" >Checkout</button>
+        <br>
+        <br>
+        <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>
+    </div>
 </div>

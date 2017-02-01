@@ -318,14 +318,14 @@ h6 {
   flex-direction: column;
   align-items: center; }
 
-.checkout-button {
+.add-to-cart-button {
   width: 75px;
   border: none; }
 
-.checkout-button img {
+.add-to-cart-button img {
   width: 100%; }
 
-.checkout-button button {
+.add-to-cart-button button {
   border: none; }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,900);

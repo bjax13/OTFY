@@ -29,11 +29,14 @@
                       </div>
                       <div class="product-stock">
                         <h6>{{product.availability}}</h6>
-                        <div class="checkout-button">
-                          <button type="button" name="button"><img src="http://www.nopcommerce.com/images/thumbs/0003726_400.png" alt="Add to Cart"></button>
+                        <div class="add-to-cart-button">
+                          <ngcart-addtocart id="{{ product.productinfokey }}" name="{{ product.productname }}" price="{{ product.regularprice }}" quantity="1" quantity-max="10" data="product"></ngcart-addtocart>
+
                         </div>
                       </div>
                     </div>
+
+                    <!-- details secton -->
                     <button ng-click="detailsToggle = !detailsToggle" type="button" name="button"> Details </button>
                     <div class="product-more-info" ng-hide="detailsToggle">
                       <div class="product-discription">
@@ -53,13 +56,10 @@
                 </div>
 
 
-
-                <button type="button" name="button" ng-click="getProducts()">test</button>
-
             </ng-form>
         </div>
     </div>
 
 
-    <button ui-sref="orderCL.selectECP" type="button" name="button">Get Started</button>
+    
 </div>
