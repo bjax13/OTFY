@@ -30,9 +30,9 @@ h6{
 
 .landing-wrap, .main-wrap, .orderCL-wrap, .test{
   background: linear-gradient(to bottom,#45c7fa 0,#1976d2 100%);
-  padding-top: 65px;
+  padding-top: 25px;
   width: 100vw;
-  min-height: 80vh;
+  min-height: 88vh;
 
 }
 .displayFlexCC {

@@ -1,6 +1,31 @@
 .landing-wrap, .main-wrap{
+  min-height: 80vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+}
+.Logo-img{
+
+  width: 80vw;
+}
+.Logo-img img{
+  border-style: solid;
+  border-color: #fff;
+  border-width: thick;
+  width: 100%;
+  border-radius: 20px;
+}
+.slogan{
+  color: #fff;
+}
+.landing-cta{
+  width: 40vw;
+}
+.landing-cta img{
+  border: solid #fff ;
+  border-width: thin;
+  border-radius: 10px;
+  width: 100%;
 }
