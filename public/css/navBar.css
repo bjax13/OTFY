@@ -19,3 +19,47 @@
   font-size: 1.5rem;
   line-height: 2.3rem;
 }
+.ham-menu a {
+  display: inline-block;
+  background: #1976D2;
+  height: 50px;
+  width: 50px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ease-in;
+}
+.ham-menu span {
+  display: inline-block;
+  background: white;
+  width: 25px;
+  height: 4px;
+  margin: 2px;
+  border-radius: 3px;
+  transition: all 0.6s ease-in;
+}
+.ham-menu:hover a {
+/*   transform: rotateX(180deg);
+  transition: all 0.6s ease-in; */
+}
+.ham-menu:hover .hide {
+  opacity: 0;
+}
+/* 45 135 */
+.ham-menu:hover span:first-child {
+  transform: rotate(135deg);
+  transition: all 0.6s ease-in;
+}
+.ham-menu:hover span:nth-child(2) {
+  opacity: 0;
+  transition: all 0.6s ease-in;
+}
+.ham-menu:hover span:last-child {
+  transform: rotate(45deg);
+  transition: all 0.6s ease-in;
+}
