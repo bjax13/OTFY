@@ -46,16 +46,16 @@ gulp.task('build-js', [], function() {
         stream: true
       }));
 });
-// gulp.task('build-vendor', [], function () {
-//     return gulp.src(['./node_modules/ngCart/**/*'])
-//
-//       .pipe(gulp.dest('./dist/js/ngCart'))
-// });
+gulp.task('build-vendor', [], function () {
+    return gulp.src(['./public/ngCart/template/**/*.html'])
+
+    .pipe(gulp.dest('./dist/template'));
+});
 gulp.task('move-html', function(){
   return gulp.src(['./public/views/**/*.html', './public/js/**/*.html'])
   .pipe(gulp.dest('./dist/views'));
 });
-gulp.task('build', [ 'build-css', 'build-js', 'move-html'], function() {
+gulp.task('build', [ 'build-css', 'build-js', 'move-html', 'build-vendor'], function() {
     return gulp.src('./public/index.html')
         .pipe(cachebust.references())
         .pipe(gulp.dest('./dist'));
