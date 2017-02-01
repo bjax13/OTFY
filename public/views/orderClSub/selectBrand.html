@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <div class="test displayFlexCC">
 
-    <h3>Enter Your Prescriptin {{test}} {{1+1}}</h3>
+    <h3>Find your brand</h3>
     <br>
-    <img src="http://vignette3.wikia.nocookie.net/fantendo/images/8/86/Orange_Mystery_Box.png/revision/latest?cb=20111111133308" alt="Contact Lens Box">
-    <br>
+
     <h3></h3>
     <div class="cl-brand-box">
         <div >
@@ -12,20 +11,44 @@
 
                 <!-- Search by Brand Field -->
                 <div class="flex-container c-1column" id="locationField">
-                    <label>Enter Brand of CL</label>
+                    <label>Enter Brand or key word to find your brand.</label>
                     <input class="flex-item" id="autocomplete" placeholder="Acuvue..." type="text" ng-model="contactSearch" />
                 </div>
 
 
-                <div class="flex-container c-1column" ng-repeat = "product in products | filter:contactSearch">
-                    <div class="">
+                <div class="product-container c-1column" ng-repeat = "product in products | filter:contactSearch">
+                    <div class="product-flex">
                       <div class="product-img">
                         <img ng-src="{{product.imglink}}" alt="{{product.name}}">
                       </div>
 
-                      <h5>Manufacture {{product.manufacturer}}</h5>
-                      <h5>Contact lens brand {{product.productname}}</h5>
-                      <h5>price {{product.regularprice | currency}}</h5>
+                      <div class="product-info">
+                        <h5>{{product.productname}}</h5>
+                        <h6>{{product.productnamesubtxt}}</h6>
+                        <h6>price {{product.regularprice | currency}}</h6>
+                      </div>
+                      <div class="product-stock">
+                        <h6>{{product.availability}}</h6>
+                        <div class="checkout-button">
+                          <button type="button" name="button"><img src="http://www.nopcommerce.com/images/thumbs/0003726_400.png" alt="Add to Cart"></button>
+                        </div>
+                      </div>
+                    </div>
+                    <button ng-click="detailsToggle = !detailsToggle" type="button" name="button"> Details </button>
+                    <div class="product-more-info" ng-hide="detailsToggle">
+                      <div class="product-discription">
+                        <h6>Description</h6>
+                        <p>{{product.description}}</p>
+                      </div>
+                      <div class="product-discription">
+                        <h6>Product Information</h6>
+                        <p>manufacturer : {{product.manufacturer}}</p>
+                        <p>Lens Type : {{product.lenstype}}</p>
+                        <p>Material : {{product.materialandcontent}}</p>
+                        <p>Water Content : {{product.watercontent}}</p>
+                        <p>Packaging : {{product.packagedetails}}</p>
+
+                      </div>
                     </div>
                 </div>
 
