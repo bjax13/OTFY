@@ -63,3 +63,14 @@
   transform: rotate(45deg);
   transition: all 0.6s ease-in;
 }
+.cart-row{
+  display: flex;
+  justify-content: center;
+}
+.cart-css{
+  color: #fff;
+}
+.cart-icon{
+  fill: #fff;
+  margin-right: 20px;
+}
