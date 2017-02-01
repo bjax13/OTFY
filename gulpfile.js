@@ -46,6 +46,11 @@ gulp.task('build-js', [], function() {
         stream: true
       }));
 });
+// gulp.task('build-vendor', [], function () {
+//     return gulp.src(['./node_modules/ngCart/**/*'])
+//
+//       .pipe(gulp.dest('./dist/js/ngCart'))
+// });
 gulp.task('move-html', function(){
   return gulp.src(['./public/views/**/*.html', './public/js/**/*.html'])
   .pipe(gulp.dest('./dist/views'));

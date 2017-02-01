@@ -1,0 +1,21 @@
+{
+  "name": "Optify",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Bryan Jackson <bjack13@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/bjax13/OTFY",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./dist/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngCart": "ngcart#^1.0.0"
+  }
+}

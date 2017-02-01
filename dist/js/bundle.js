@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ui.router']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('app', ['ui.router', 'ngCart']).config(function ($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/');
 

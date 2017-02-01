@@ -1,4 +1,4 @@
-angular.module('app',['ui.router'])
+angular.module('app',['ui.router', 'ngCart'])
  .config(function ($stateProvider, $urlRouterProvider) {
 
    $urlRouterProvider.otherwise('/');
