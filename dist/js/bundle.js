@@ -31,7 +31,8 @@ angular.module('app', ['ui.router', 'ngCart']).config(function ($stateProvider, 
     controller: 'ecpInputCtrl'
   }).state('orderCL.checkout', {
     url: '/checkout',
-    templateUrl: './views/orderClSub/checkout.html'
+    templateUrl: './views/orderClSub/checkout.html',
+    controller: 'checkoutCtrl'
   }).state('scheduleEyeExamComingSoon', {
     url: '/scheduleEyeExamComingSoon',
     templateUrl: './views/scheduleEyeExamComingSoon.html'
@@ -53,6 +54,15 @@ angular.module('app').controller('addressInputCtrl', function ($scope, addressAu
   $scope.initialize = addressAutoFillSrvc.initialize;
 
   $scope.geolocate = addressAutoFillSrvc.geolocate;
+});
+'use strict';
+
+angular.module('app').controller('checkoutCtrl', function ($scope, $http, ngCart) {
+
+	$scope.test = 'again';
+
+	ngCart.setTaxRate(7.5);
+	ngCart.setShipping(2.99);
 });
 'use strict';
 

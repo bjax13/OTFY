@@ -13,10 +13,10 @@
                    ng-options=" v for v in qtyOpt"></select>
        </span>
     </div>
-    <div  ng-show="inCart()">
+    <div  ng-show="inCart()" class="">
         <h6>In your cart.</h6>
         <br>
-        <button ui-sref="orderCL.checkout" >Checkout</button>
+        <button ui-sref="orderCL.checkout">Checkout</button>
         <br>
         <br>
         <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>

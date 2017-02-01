@@ -39,7 +39,8 @@ angular.module('app',['ui.router', 'ngCart'])
       })
       .state('orderCL.checkout', {
         url: '/checkout',
-        templateUrl: './views/orderClSub/checkout.html'
+        templateUrl: './views/orderClSub/checkout.html',
+        controller: 'checkoutCtrl'
       })
       .state('scheduleEyeExamComingSoon', {
         url: '/scheduleEyeExamComingSoon',
