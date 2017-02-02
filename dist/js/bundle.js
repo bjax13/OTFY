@@ -47,18 +47,36 @@ angular.module('app', ['ui.router', 'ngCart']).config(function ($stateProvider, 
 'use strict';
 
 angular.module('app').controller('addressInputCtrl', function ($scope, addressAutoFillSrvc, saveAddressSrvc) {
-  $scope.test = addressAutoFillSrvc.test;
+	$scope.test = addressAutoFillSrvc.test;
 
-  $scope.logAddress = saveAddressSrvc.logAddress;
+	$scope.logAddress = function () {
+		var addressObj = {
+			addressSearch: document.getElementById('autocomplete').value,
+			streetNumber: document.getElementById('street_number').value,
+			streetName: document.getElementById('route').value,
+			city: document.getElementById('locality').value,
+			country: document.getElementById('country').value,
+			postalCode: document.getElementById('postal_code').value,
+			state: document.getElementById('administrative_area_level_1').value
+		};
+		if (addressObj.state && addressObj.streetNumber && addressObj.streetName && addressObj.city && addressObj.country && addressObj.postalCode) {
+			saveAddressSrvc.logAddress(addressObj);
+		} else {
+			alert('missing address field');
+		}
+	};
 
-  $scope.initialize = addressAutoFillSrvc.initialize;
+	$scope.initialize = addressAutoFillSrvc.initialize;
 
-  $scope.geolocate = addressAutoFillSrvc.geolocate;
+	$scope.geolocate = addressAutoFillSrvc.geolocate;
 });
 'use strict';
 
-angular.module('app').controller('checkoutCtrl', function ($scope, $http, ngCart) {
-
+angular.module('app').controller('checkoutCtrl', function ($scope, $http, ngCart, saveAddressSrvc) {
+	saveAddressSrvc.getAddress().then(function (result) {
+		$scope.address = result.address;
+		console.log(result);
+	});
 	$scope.test = 'again';
 
 	ngCart.setTaxRate(7.5);
@@ -142,16 +160,6 @@ angular.module('app').controller('rxInputCtrl', function ($scope, rxSrvc) {
   };
 
   $scope.getProducts();
-});
-'use strict';
-
-angular.module('app').directive('navBar', function () {
-  return {
-    restrict: 'E',
-    templateUrl: "./views/directives/templates/navTpl.html",
-    scope: {},
-    controller: 'navBarCtrl'
-  };
 });
 'use strict';
 
@@ -263,27 +271,28 @@ angular.module('app').service('rxSrvc', function ($http) {
 });
 'use strict';
 
-angular.module('app').service('saveAddressSrvc', function () {
+angular.module('app').service('saveAddressSrvc', function ($http, $q) {
 
-  var addresses = [];
+  var address = {};
+  this.getAddress = function () {
+    var defer = $q.defer();
+    $http.get('/api/session').then(function (result) {
+      address = result.data;
+      defer.resolve(address);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    return defer.promise;
+  };
 
-  this.logAddress = function () {
-    var addressObj = {
-      addressSearch: document.getElementById('autocomplete').value,
-      streetNumber: document.getElementById('street_number').value,
-      streetName: document.getElementById('route').value,
-      city: document.getElementById('locality').value,
-      country: document.getElementById('country').value,
-      postalCode: document.getElementById('postal_code').value,
-      state: document.getElementById('administrative_area_level_1').value
-    };
-
-    if (addressObj.state && addressObj.streetNumber && addressObj.streetName && addressObj.city && addressObj.country && addressObj.postalCode) {
-      addresses.push(addressObj);
-      console.log(addresses);
-    } else {
-      alert('missing address field');
-    }
+  this.logAddress = function (addressObj) {
+    address = addressObj;
+    $http.post('/api/session', { address: address }).then(function (result) {
+      console.log(result);
+    }).catch(function (err) {
+      console.log(err);
+    });
+    // console.log(address);
   };
 });
 'use strict';
@@ -304,5 +313,15 @@ angular.module('app').service('userSrvc', function ($http) {
 			data: user
 		});
 	};
+});
+'use strict';
+
+angular.module('app').directive('navBar', function () {
+  return {
+    restrict: 'E',
+    templateUrl: "./views/directives/templates/navTpl.html",
+    scope: {},
+    controller: 'navBarCtrl'
+  };
 });
 //# sourceMappingURL=bundle.js.map

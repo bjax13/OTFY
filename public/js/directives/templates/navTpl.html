@@ -1,23 +1,28 @@
-
-
 <nav class="nav-bar">
 
-  <ul class="nav-list">
-    <div class="ham-menu">
-      <a>
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </a>
-    </div>
-    <li ui-sref="main">optify</li>
-    <li ui-sref="orderCL">order</li>
-    <li ui-sref="userInfo">userInfo</li>
-    <li ui-sref="login" >login </li>
-    <a href="/auth/logout" ><li >logout </li></a>
-
-    <ngcart-summary class="cart-css" ui-sref="orderCL.checkout"></ngcart-summary>
-
-
-  </ul>
+    <ul class="nav-list">
+        <div class="ham-menu">
+            <a>
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </a>
+        </div>
+        <li ui-sref="main">
+            <a href="#">optify</a>
+          </li>
+        <li ui-sref="orderCL">
+            <a href="#">order</a>
+          </li>
+        <li ui-sref="userInfo">
+            <a href="#">userInfo</a>
+          </li>
+        <li ui-sref="login">
+            <a href="login">Login</a>
+        </li>
+        <li>
+            <a href="/auth/logout"></a>
+        </li>
+        <ngcart-summary class="cart-css" ui-sref="orderCL.checkout"></ngcart-summary>
+    </ul>
 </nav>

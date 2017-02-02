@@ -1,27 +1,29 @@
 angular.module('app')
-  .service('saveAddressSrvc', function () {
+  .service('saveAddressSrvc', function ($http, $q) {
 
-    let addresses = [];
+    let address = {};
+    this.getAddress = function(){
+      let defer = $q.defer();
+       $http.get('/api/session').then(result=>{
+        address = result.data;
+        defer.resolve(address);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+      return defer.promise;
+    }
 
-    this.logAddress = function () {
-      let addressObj = {
-        addressSearch: document.getElementById('autocomplete').value,
-        streetNumber: document.getElementById('street_number').value,
-        streetName: document.getElementById('route').value,
-        city: document.getElementById('locality').value,
-        country: document.getElementById('country').value,
-        postalCode: document.getElementById('postal_code').value,
-        state: document.getElementById('administrative_area_level_1').value,
-      };
-
-
-
-      if (addressObj.state && addressObj.streetNumber&& addressObj.streetName&& addressObj.city&& addressObj.country&& addressObj.postalCode) {
-        addresses.push(addressObj);
-        console.log(addresses);
-      }else {
-        alert('missing address field');
-      }
+    this.logAddress = function (addressObj) {
+      address = addressObj;
+      $http.post('/api/session', {address})
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      // console.log(address);
     };
 
 

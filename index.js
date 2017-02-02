@@ -23,7 +23,11 @@ app.use(cors());
 app.use(session({
   secret: config.secret,
   saveUninitialized: true,
-  resave: true
+  resave: true,
+  cookie:{
+    maxAge:1000*60*60*24*7
+  },
+  secure:false
 }));
 
 app.use(passport.initialize());
@@ -95,7 +99,24 @@ app.get('/api/products', function (req, res, done) {
   });
 });
 
+app.post('/api/session', (req, res)=>{
+  console.log(req.body);
+  Object.keys(req.body).map(prop => {
+    console.log(prop);
+    req.session[prop]=req.body[prop];
+  });
+  res.status(200).send(req.session);
+});
 
+app.get('/api/session', (req,res)=>{
+  res.status(200).send(req.session);
+});
+
+// useful for react
+// app.get('*', (req,res)=>{
+//   res.sendFile(`${__dirname}/dist/index.html`);
+// });
+//
 
 
 app.listen(config.port, function () {
