@@ -35,6 +35,14 @@
   width: 200px;
 
 }
+.cart-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart-delete img{
+  width: 25%
+}
 .product-img img{
   width: 100%;
   border-radius: 5px

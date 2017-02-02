@@ -303,6 +303,14 @@ h6 {
 .product-img {
   width: 200px; }
 
+.cart-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.cart-delete img {
+  width: 25%; }
+
 .product-img img {
   width: 100%;
   border-radius: 5px; }
@@ -345,7 +353,9 @@ h6 {
   padding: 0.8em 1.2em;
   overflow: hidden;
   list-style: none;
-  border: solid 3px white;
+  border: solid 1px white;
+  border-right: 0px;
+  border-left: 0px;
   background: rgba(112, 128, 144, 0.2); }
 
 .Rtable-cell > h1,
@@ -355,6 +365,10 @@ h6 {
 .Rtable-cell > h5,
 .Rtable-cell > h6 {
   margin: 0; }
+
+.Rtable-repeated-rows {
+  width: 100%;
+  display: flex; }
 
 /* Table column sizing
 ================================== */
