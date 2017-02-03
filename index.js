@@ -11,17 +11,19 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
 // local required files
-const config = require('./config.json');
+
+
+
 
 
 const app = module.exports = express();
-const port = config.port;
+const port = process.env.port;
 
 app.use(bodyParser.json());
 app.use(cors());
 
 app.use(session({
-  secret: config.secret,
+  secret: process.env.secret,
   saveUninitialized: true,
   resave: true,
   cookie:{
@@ -49,16 +51,16 @@ const oAuthCtrl = require('./serverCtrls/oAuthCtrl.js');
 // *** start oAuth  ****
 // FacebookStrategy
 passport.use('facebook', new FacebookStrategy ({
-  clientID: config.facebook.clientId,
-  clientSecret: config.facebook.clientSecret,
+  clientID: process.env.facebookClientId,
+  clientSecret: process.env.facebookClientSecret,
   callbackURL:'http://localhost:3000/auth/facebook/callback',
   profileFields:['id', 'displayName','email']
 },oAuthCtrl.facebookAuth));
 
 // GoogleStrategy
 passport.use(new GoogleStrategy({
-  clientID: config.google.clientId,
-  clientSecret: config.google.clientSecret,
+  clientID: process.env.googleClientId,
+  clientSecret: process.env.googleClientSecret,
   callbackURL: "http://localhost:3000/auth/google/callback",
   profileFields: ['id', 'displayName','email']
 },oAuthCtrl.googleAuth));
@@ -119,6 +121,6 @@ app.get('/api/session', (req,res)=>{
 //
 
 
-app.listen(config.port, function () {
-  console.log("it is ALIVE!!  @"+ port);
+app.listen(process.env.port, function () {
+  console.log("it is ALIVE!!  @"+ process.env.port);
 });
