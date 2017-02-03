@@ -46,6 +46,7 @@
     "passport-facebook": "^2.1.1",
     "passport-google-oauth2": "^0.1.6",
     "passport-local": "^1.0.0",
+    "pg": "^6.1.2",
     "reload": "^1.1.0",
     "start": "^5.1.0"
   },

@@ -38,7 +38,7 @@ app.use(passport.session());
 app.use(express.static(__dirname + "/dist"));
 
 //setup database connection
-const massiveInstance = massive.connectSync({connectionString: 'postgres://localhost/Optify'});
+const massiveInstance = massive.connectSync({connectionString: process.env.connectionString});
 
 app.set('db', massiveInstance);
 const db = app.get('db');
