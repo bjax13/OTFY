@@ -121,6 +121,6 @@ app.get('/api/session', (req,res)=>{
 //
 
 
-app.listen(process.env.PORT || 3000, function () {
+app.listen((process.env.PORT || 3000), function () {
   console.log("it is ALIVE!!  @"+ process.env.PORT);
 });
