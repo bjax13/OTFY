@@ -344,6 +344,16 @@ a:link:active, a:visited:active {
 .add-to-cart-button button {
   border: none; }
 
+.form-iframe {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.edges {
+  border: white solid 3px;
+  border-radius: 10px;
+  overflow: hidden; }
+
 /* Variables
 ================================== */
 /* Tables

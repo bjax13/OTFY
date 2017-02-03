@@ -33,9 +33,9 @@ angular.module('app', ['ui.router', 'ngCart']).config(function ($stateProvider, 
     url: '/checkout',
     templateUrl: './views/orderClSub/checkout.html',
     controller: 'checkoutCtrl'
-  }).state('scheduleEyeExamComingSoon', {
-    url: '/scheduleEyeExamComingSoon',
-    templateUrl: './views/scheduleEyeExamComingSoon.html'
+  }).state('scheduleEyeExam', {
+    url: '/scheduleEyeExam',
+    templateUrl: './views/scheduleEyeExam.html'
   }).state('orderEWComingSoon', {
     url: '/orderEWComingSoon',
     templateUrl: './views/orderEWComingSoon.html'
@@ -160,6 +160,16 @@ angular.module('app').controller('rxInputCtrl', function ($scope, rxSrvc) {
   };
 
   $scope.getProducts();
+});
+'use strict';
+
+angular.module('app').directive('navBar', function () {
+  return {
+    restrict: 'E',
+    templateUrl: "./views/directives/templates/navTpl.html",
+    scope: {},
+    controller: 'navBarCtrl'
+  };
 });
 'use strict';
 
@@ -313,15 +323,5 @@ angular.module('app').service('userSrvc', function ($http) {
 			data: user
 		});
 	};
-});
-'use strict';
-
-angular.module('app').directive('navBar', function () {
-  return {
-    restrict: 'E',
-    templateUrl: "./views/directives/templates/navTpl.html",
-    scope: {},
-    controller: 'navBarCtrl'
-  };
 });
 //# sourceMappingURL=bundle.js.map

@@ -42,9 +42,9 @@ angular.module('app',['ui.router', 'ngCart'])
         templateUrl: './views/orderClSub/checkout.html',
         controller: 'checkoutCtrl'
       })
-      .state('scheduleEyeExamComingSoon', {
-        url: '/scheduleEyeExamComingSoon',
-        templateUrl: './views/scheduleEyeExamComingSoon.html'
+      .state('scheduleEyeExam', {
+        url: '/scheduleEyeExam',
+        templateUrl: './views/scheduleEyeExam.html'
       })
       .state('orderEWComingSoon', {
         url: '/orderEWComingSoon',
