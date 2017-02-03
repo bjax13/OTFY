@@ -20,7 +20,7 @@ const app = module.exports = express();
 const port = process.env.port;
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 app.use(session({
   secret: process.env.secret,
